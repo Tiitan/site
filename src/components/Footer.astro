@@ -1,0 +1,20 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200/80 bg-white/75 py-8 dark:border-slate-800 dark:bg-slate-950/70">
+  <div class="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-3 px-4 text-sm text-slate-600 sm:flex-row sm:items-center sm:px-6 lg:px-8 dark:text-slate-400">
+    <p>&copy; {year} Titan. All rights reserved.</p>
+    <nav aria-label="Footer links" class="flex items-center gap-4">
+      <a class="hover:text-cyan-700 dark:hover:text-cyan-300" href="/privacy">Privacy</a>
+      <a
+        class="hover:text-cyan-700 dark:hover:text-cyan-300"
+        href="https://github.com/Tiitan"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+</footer>

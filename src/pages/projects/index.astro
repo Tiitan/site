@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const upcoming = projects.filter((project) => project.data.status !== "shipped");
+---
+
+<BaseLayout
+  title="Projects | Titan"
+  description="Project index covering destruction systems, runtime geometry workflows, and gameplay tooling."
+>
+  <section>
+    <h1 class="text-3xl font-extrabold sm:text-4xl">Projects</h1>
+    <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
+      Work focused on destruction workflows, runtime mesh processing, and developer tooling for iteration speed.
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            image={project.data.cardImage}
+            tags={project.data.tags}
+            href={`/projects/${project.slug}`}
+            status={project.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="surface mt-12">
+    <h2 class="text-2xl font-bold">In progress / upcoming</h2>
+    <ul class="mt-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+      <li>Window Fracture (Unreal) - separate page planned.</li>
+      {
+        upcoming.map((project) => (
+          <li>
+            {project.data.title} - {project.data.status === "in-progress" ? "in progress" : "planned"}.
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

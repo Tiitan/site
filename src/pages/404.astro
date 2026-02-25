@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found | Titan" description="The requested page could not be found." noindex={true}>
+  <section class="surface mx-auto max-w-2xl text-center">
+    <p class="text-sm font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">404</p>
+    <h1 class="mt-2 text-3xl font-extrabold sm:text-4xl">Page not found</h1>
+    <p class="mt-4 text-slate-700 dark:text-slate-300">
+      The link may be outdated or the page has moved.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a class="button-primary" href="/">Go home</a>
+      <a class="button-secondary" href="/projects">Browse projects</a>
+    </div>
+  </section>
+</BaseLayout>

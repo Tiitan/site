@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+@config "../../tailwind.config.mjs";
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-balance tracking-tight;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-cyan-500 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-950;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-slate-200/80 bg-white/90 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/85;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-cyan-600 px-4 py-2.5 font-semibold text-white transition hover:bg-cyan-500;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 font-semibold text-slate-900 transition hover:border-cyan-400 hover:text-cyan-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-cyan-500 dark:hover:text-cyan-300;
+  }
+}

@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About | Titan">
+  <section>
+    <h1 class="text-3xl font-extrabold sm:text-4xl">About</h1>
+    <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
+      I dedicated this portfolio to my game dev projects, I've been a Unity hobbist and enthusiast since the release of Unity3D 3.0 back in 2010, when it was silly to learn Unity instead of Flash.
+    </p>
+    <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
+      Beside indie game dev, I am a Florian Noirbent a french senior software engineer working mainly on distributed backend systems accross various industries.
+    </p>
+  </section>
+
+  <section class="mt-10 grid gap-5 md:grid-cols-2">
+    <article class="surface">
+      <h2 class="text-xl font-bold">Languages</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>C#</li>
+        <li>Python</li>
+        <li>C++</li>
+      </ul>
+    </article>
+
+    <article class="surface">
+      <h2 class="text-xl font-bold">Engines</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>Unity</li>
+        <li>Unreal Engine</li>
+        <li>Godot</li>
+      </ul>
+    </article>
+
+    <article class="surface">
+      <h2 class="text-xl font-bold">Rendering / Compute / Shaders</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>ShaderLab materials for fracture and shard visuals</li>
+        <li>Shader-driven damage visualization</li>
+        <li>Material workflows for staged break states</li>
+        <li>Draw-call and allocation budgeting under runtime load</li>
+      </ul>
+    </article>
+
+    <article class="surface">
+      <h2 class="text-xl font-bold">Geometry / Physics / Runtime Generation</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>Runtime mesh extraction and fragmentation</li>
+        <li>Deterministic seed-based fracture behavior</li>
+        <li>Collision shaping for staged breakability</li>
+      </ul>
+    </article>
+
+    <article class="surface md:col-span-2">
+      <h2 class="text-xl font-bold">Tooling</h2>
+      <ul class="mt-3 grid gap-2 text-sm text-slate-700 sm:grid-cols-2 dark:text-slate-300">
+        <li>Editor tools for destruction authoring</li>
+        <li>Build and deployment automation</li>
+        <li>Profiling overlays and observability instrumentation</li>
+        <li>Reliability and incident-oriented operational workflows</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="surface mt-10">
+    <h2 class="text-2xl font-bold">Experience Timeline</h2>
+    <ol class="mt-5 space-y-4">
+      <li class="border-l-2 border-cyan-300 pl-4 dark:border-cyan-700">
+        <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">2025-Present | Co-founder, Life Story</p>
+        <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">
+          Leading product architecture, full-stack development, cloud infrastructure, and production operations.
+        </p>
+      </li>
+      <li class="border-l-2 border-slate-300 pl-4 dark:border-slate-700">
+        <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">2024 | Senior Developer, Equativ</p>
+        <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">
+          Refactored critical low-latency auction path components, improving latency predictability and maintainability.
+        </p>
+      </li>
+      <li class="border-l-2 border-slate-300 pl-4 dark:border-slate-700">
+        <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">2019-2023 | Senior Developer, Rimes Technologies</p>
+        <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">
+          Built and operated internal .NET and Python platforms, auth systems, and reliability workflows across teams.
+        </p>
+      </li>
+      <li class="border-l-2 border-slate-300 pl-4 dark:border-slate-700">
+        <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">2016-2018 | Co-founder, SupremApp</p>
+        <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">
+          Built casual mobile games in Unity and shipped "Hop Boy", which reached #1 in the French App Store.
+        </p>
+      </li>
+    </ol>
+  </section>
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" }
+];
+
+const isActive = (href: string) =>
+  href === "/projects"
+    ? currentPath === "/projects" || currentPath.startsWith("/projects/")
+    : currentPath === href;
+---
+
+<header class="border-b border-slate-200/80 bg-white/85 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+  <div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="/" class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+      Titan - game developer
+    </a>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <nav aria-label="Main navigation">
+        <ul class="flex flex-wrap items-center gap-1">
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[
+                    "rounded-lg px-3 py-2 text-sm font-medium transition",
+                    isActive(link.href)
+                      ? "bg-cyan-100 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-200"
+                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                  ]}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <button
+        id="theme-toggle"
+        type="button"
+        class="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-cyan-400 hover:text-cyan-700 dark:border-slate-700 dark:text-slate-200 dark:hover:border-cyan-500 dark:hover:text-cyan-300"
+        aria-label="Toggle dark mode"
+      >
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const button = document.getElementById("theme-toggle");
+    if (!button) return;
+
+    const applyLabel = () => {
+      const dark = document.documentElement.classList.contains("dark");
+      button.textContent = dark ? "Light" : "Dark";
+      button.setAttribute("aria-pressed", dark ? "true" : "false");
+    };
+
+    applyLabel();
+
+    button.addEventListener("click", () => {
+      const dark = document.documentElement.classList.toggle("dark");
+      try {
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      } catch {}
+      applyLabel();
+    });
+  })();
+</script>

@@ -1,11 +1,74 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = await getCollection("projects");
+const featured = projects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="Titan - game developer"
+  description="Portfolio of real-time destruction and gameplay tooling projects by Titan, with a focus on runtime geometry and performance."
+>
+  <section class="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-start">
+    <div class="surface">
+      <p class="mb-4 inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/60 dark:text-cyan-300">
+        Real-time systems
+      </p>
+      <h1 class="text-3xl font-extrabold sm:text-4xl">Titan - game developer</h1>
+      <p class="mt-3 text-lg font-semibold text-slate-800 dark:text-slate-200">runtime systems & gameplay tech</p>
+      <p class="mt-5 max-w-prose text-base text-slate-700 dark:text-slate-300">
+        I build runtime destruction and support tooling for fast gameplay iteration. Current work is focused on
+        deterministic fracture behavior, runtime geometry workflows, and efficient data paths that stay stable
+        under load. Unity is the active platform today, with Unreal support planned in the same technical model.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="button-primary" href="/projects">View Projects</a>
+        <a class="button-secondary" href="/contact">Contact</a>
+      </div>
+    </div>
+
+    <aside class="surface">
+      <h2 class="text-xl font-bold">Current Focus</h2>
+      <ul class="mt-4 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+        <li>Runtime fracture systems with deterministic output.</li>
+        <li>Performance tooling for geometry-heavy gameplay features.</li>
+        <li>Editor workflows that reduce setup and iteration overhead.</li>
+      </ul>
+      <figure class="mt-6">
+        <img
+          src="/images/mecha-signature.jpg"
+          alt="Titan signature mecha artwork"
+          class="w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+          loading="lazy"
+        />
+      </figure>
+    </aside>
+  </section>
+
+  <section class="mt-12">
+    <div class="mb-6 flex items-center justify-between gap-4">
+      <h2 class="text-2xl font-bold">Featured Projects</h2>
+      <a class="text-sm font-semibold text-cyan-700 hover:underline dark:text-cyan-300" href="/projects">
+        See all projects
+      </a>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        featured.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            image={project.data.cardImage}
+            tags={project.data.tags}
+            href={`/projects/${project.slug}`}
+            status={project.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,46 +1,31 @@
-# Astro Starter Kit: Basics
+# Titan Portfolio Site
+
+Personal portfolio site for **Titan** built with Astro + Tailwind CSS, focused on real-time destruction systems and gameplay tooling.
+
+## Local Development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Build and Preview
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+npm run preview
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+`npm run build` outputs static files to `dist/`.
 
-## 🧞 Commands
+## Cloudflare Pages Configuration
 
-All commands are run from the root of the project, from a terminal:
+- Build command: `npm run build`
+- Output directory: `dist`
+- Framework preset: `Astro` (or `None` with the command/output above)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Notes
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Site URL is configured as `https://titan.nofl.uk`.
+- Dark mode is class-based and persisted in `localStorage`.
+- No tracking or analytics are enabled by default.

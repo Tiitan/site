@@ -1,0 +1,51 @@
+---
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  href: string;
+  status: "shipped" | "in-progress" | "planned";
+  image?: string;
+}
+
+const { title, description, tags, href, status, image } = Astro.props;
+
+const statusLabel = {
+  shipped: "Shipped",
+  "in-progress": "In Progress",
+  planned: "Planned"
+}[status];
+---
+
+<a
+  href={href}
+  class="surface group block h-full transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md dark:hover:border-cyan-700"
+>
+  <article class="flex h-full flex-col gap-4">
+    {
+      image && (
+        <img
+          src={image}
+          alt={`${title} preview`}
+          class="h-44 w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+          loading="lazy"
+        />
+      )
+    }
+
+    <div class="flex items-center justify-between gap-4">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">{title}</h3>
+      <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+        {statusLabel}
+      </span>
+    </div>
+
+    <p class="text-sm text-slate-700 dark:text-slate-300">{description}</p>
+
+    <div class="flex flex-wrap gap-2">
+      {tags.map((tag) => <Tag label={tag} />)}
+    </div>
+  </article>
+</a>

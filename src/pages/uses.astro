@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Uses | Titan" description="Tools, setup, and workflow used by Titan.">
+  <section class="max-w-3xl">
+    <h1 class="text-3xl font-extrabold sm:text-4xl">Uses</h1>
+    <p class="mt-4 text-slate-700 dark:text-slate-300">
+      Current tools and workflow for building and testing runtime destruction systems.
+    </p>
+  </section>
+
+  <section class="mt-8 grid gap-5 md:grid-cols-2">
+    <article class="surface">
+      <h2 class="text-xl font-bold">Primary Stack</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>Unity 2022/2023 LTS (current production target)</li>
+        <li>Visual Studio + Rider (mixed workflow)</li>
+        <li>GitHub + Git LFS where needed</li>
+      </ul>
+    </article>
+
+    <article class="surface">
+      <h2 class="text-xl font-bold">Profiling and Debugging</h2>
+      <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+        <li>Unity Profiler and frame debugger captures</li>
+        <li>Runtime debug overlays for fracture state and timings</li>
+        <li>Repeatable scene test harnesses for regressions</li>
+      </ul>
+    </article>
+
+    <article class="surface md:col-span-2">
+      <h2 class="text-xl font-bold">Workflow Notes</h2>
+      <p class="mt-3 text-sm text-slate-700 dark:text-slate-300">
+        Authoring and runtime paths are kept separate, with deterministic seeds used for reproducible test runs.
+        Shared data structures are kept engine-agnostic so Unreal migration work can focus on integration details
+        instead of rewrites.
+      </p>
+    </article>
+  </section>
+</BaseLayout>
