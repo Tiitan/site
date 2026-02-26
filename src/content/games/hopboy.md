@@ -11,6 +11,7 @@ engine: Unity
 genre: 2D Procedural Infinite Runner
 releaseNote: Android/iOS release.
 highlighted: true
+supremapp: true
 ---
 
 ## Overview

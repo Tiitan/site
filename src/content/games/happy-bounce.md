@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Casual Billiard
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

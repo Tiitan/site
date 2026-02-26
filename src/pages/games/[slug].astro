@@ -26,7 +26,12 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
 
   <article class="space-y-8">
     <header class="surface">
-      <div class="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-start">
+      <div
+        class:list={[
+          "grid gap-6 lg:items-start",
+          game.data.supremapp ? "lg:grid-cols-[1fr_280px_auto]" : "lg:grid-cols-[1fr_280px]"
+        ]}
+      >
         <div>
           <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Game detail</p>
           <h1 class="text-3xl font-extrabold sm:text-4xl">{game.data.title}</h1>
@@ -60,12 +65,23 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
           </dl>
         </div>
 
-        <img
-          src={game.data.cardImage}
-          alt={`${game.data.title} placeholder image`}
-          class="w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
-          loading="lazy"
-        />
+        <div class="w-full">
+          <img
+            src={game.data.cardImage}
+            alt={`${game.data.title} placeholder image`}
+            class="w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+            loading="lazy"
+          />
+        </div>
+        {
+          game.data.supremapp && (
+            <div class="flex justify-end lg:justify-start">
+              <div class="rounded-lg border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-700 dark:bg-white">
+                <img src="/images/games/suprem-app.png" alt="SupremApp logo" class="h-20 w-20 object-contain" loading="lazy" />
+              </div>
+            </div>
+          )
+        }
       </div>
     </header>
 
@@ -80,6 +96,7 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
         "[&_li]:text-slate-700 dark:[&_li]:text-slate-300",
         "[&_a]:text-cyan-700 [&_a]:underline-offset-4 hover:[&_a]:underline dark:[&_a]:text-cyan-300",
         "[&_img]:w-full [&_img]:rounded-xl [&_img]:border [&_img]:border-slate-200 dark:[&_img]:border-slate-700",
+        "[&_.media-grid]:grid [&_.media-grid]:gap-4 md:[&_.media-grid]:grid-cols-2",
         "[&_iframe]:aspect-video [&_iframe]:w-full [&_iframe]:rounded-xl [&_iframe]:border [&_iframe]:border-slate-200 dark:[&_iframe]:border-slate-700"
       ]}
     >

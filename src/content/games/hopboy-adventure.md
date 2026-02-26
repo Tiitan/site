@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Multiplayer Runner
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

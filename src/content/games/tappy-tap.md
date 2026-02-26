@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Casual Arcade
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

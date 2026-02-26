@@ -1,7 +1,7 @@
 ---
 title: Octopush
 description: Casual tap-in-rhythm game designed for short play sessions.
-cardImage: /images/games/octopush-placeholder.svg
+cardImage: /images/games/octo-push-logo.jpg
 date: 2015-01-01
 status: released
 platforms:
@@ -10,12 +10,19 @@ platforms:
 engine: Unity
 genre: Casual Rhythm
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview
 
-Octopush is part of Titan's legacy game portfolio. This page is a minimal placeholder that captures the core concept, platform target, and release state.
+Simple Casual tap-in-rhythm game designed for short play sessions. 
 
-## Notes
+First game released with the SupremApp studio as an MVP validating the stack: advertisement, mobile platforms ecosystem, achievements, social feature and In-app purchase integration.
 
-More technical breakdown coming soon.
+## Media
+
+<div class="media-grid">
+  <img src="/images/games/octo-push/gameplay.jpg" alt="Octopush gameplay screenshot" loading="lazy" />
+  <img src="/images/games/octo-push/menu.jpg" alt="Octopush menu screenshot" loading="lazy" />
+</div>
+

@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Memory Card Game
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

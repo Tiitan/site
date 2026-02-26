@@ -9,6 +9,7 @@ platforms:
 engine: Unity
 genre: Top-Down Procedural
 releaseNote: Prototype stage, no public release announced.
+supremapp: true
 ---
 
 ## Overview

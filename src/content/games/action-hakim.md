@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Arcade Side-Scroller
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

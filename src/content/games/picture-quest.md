@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: Puzzle
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview

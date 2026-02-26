@@ -10,6 +10,7 @@ platforms:
 engine: Unity
 genre: 2D Infinite Runner
 releaseNote: Android/iOS release.
+supremapp: true
 ---
 
 ## Overview
