@@ -2,7 +2,7 @@
 title: Happy bounce
 description: Cartoon billiard table game.
 cardImage: /images/games/happy-bounce-placeholder.svg
-date: 2017-01-01
+date: 2016-01-01
 status: released
 platforms:
   - Android

@@ -10,6 +10,7 @@ interface Props {
   engine: string;
   platforms: string[];
   status: "released" | "unreleased";
+  cardStyle?: "cover" | "icon";
   highlighted?: boolean;
   supremapp?: boolean;
 }
@@ -23,6 +24,7 @@ const {
   engine,
   platforms,
   status,
+  cardStyle = "cover",
   highlighted = false,
   supremapp = false
 } = Astro.props;
@@ -47,7 +49,12 @@ const statusClass =
       <img
         src={image}
         alt={`${title} placeholder image`}
-        class="h-44 w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+        class:list={[
+          "h-44 w-full rounded-xl border border-slate-200 dark:border-slate-700",
+          cardStyle === "icon"
+            ? "bg-slate-100 p-3 object-contain dark:bg-slate-800"
+            : "object-cover"
+        ]}
         loading="lazy"
       />
       {

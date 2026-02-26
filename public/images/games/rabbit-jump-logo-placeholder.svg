@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Rabbit jump logo placeholder</title>
+  <desc id="desc">Square placeholder logo for Rabbit jump game.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#155e75" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="84" fill="url(#bg)" />
+  <circle cx="256" cy="262" r="126" fill="#e2e8f0" opacity="0.92" />
+  <ellipse cx="205" cy="155" rx="28" ry="70" fill="#e2e8f0" />
+  <ellipse cx="307" cy="155" rx="28" ry="70" fill="#e2e8f0" />
+  <circle cx="225" cy="250" r="10" fill="#0f172a" />
+  <circle cx="287" cy="250" r="10" fill="#0f172a" />
+  <ellipse cx="256" cy="284" rx="14" ry="10" fill="#f97316" />
+  <path d="M210 322c10 18 25 26 46 26s36-8 46-26" fill="none" stroke="#0f172a" stroke-width="10" stroke-linecap="round" />
+  <rect x="102" y="386" width="308" height="26" rx="13" fill="#334155" />
+  <rect x="156" y="354" width="86" height="22" rx="8" fill="#475569" />
+  <rect x="276" y="327" width="86" height="22" rx="8" fill="#475569" />
+  <circle cx="428" cy="122" r="16" fill="#f59e0b" />
+  <circle cx="396" cy="153" r="12" fill="#f59e0b" />
+  <rect x="116" y="430" width="280" height="10" rx="5" fill="url(#accent)" />
+  <text x="256" y="472" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="34" font-weight="700">
+    Rabbit jump
+  </text>
+</svg>

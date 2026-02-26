@@ -26,6 +26,7 @@ const games = defineCollection({
     platforms: z.array(z.string()).min(1),
     engine: z.string(),
     genre: z.string(),
+    cardStyle: z.enum(["cover", "icon"]).default("cover"),
     releaseNote: z.string().optional(),
     accessUrl: z.string().url().optional(),
     accessLabel: z.string().optional(),

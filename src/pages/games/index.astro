@@ -4,6 +4,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import GameCard from "../../components/GameCard.astro";
 
 const games = (await getCollection("games")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const studentSlugs = new Set(["cursor-machina", "rocket", "chess-mate"]);
+const coreSlug = "core-fantasy-arena";
+
+const coreGames = games.filter((game) => game.slug === coreSlug);
+const supremappGames = games.filter((game) => game.data.supremapp && game.slug !== coreSlug);
+const studentGames = games.filter((game) => studentSlugs.has(game.slug));
+const groupedSlugs = new Set([...coreGames, ...supremappGames, ...studentGames].map((game) => game.slug));
+const otherGames = games.filter((game) => !groupedSlugs.has(game.slug));
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -15,7 +23,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   <section>
     <h1 class="text-3xl font-extrabold sm:text-4xl">Games</h1>
     <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
-      A selection of mobile and student game projects spanning arcade, runner, puzzle, and experimental multiplayer prototypes. Developed independently and with SupremApp. Contractual work is not included.
+      A selection of mobile and student game projects spanning arcade, runner, puzzle, and experimental multiplayer prototypes. Developed independently and with SupremApp.
     </p>
     <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
       Contractual work is not included here.
@@ -23,22 +31,104 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   </section>
 
   <section class="mt-8">
-    <div class="grid gap-5 md:grid-cols-2">
+    <div class="space-y-10">
       {
-        games.map((game) => (
-          <GameCard
-            title={game.data.title}
-            description={game.data.description}
-            image={game.data.cardImage}
-            href={`/games/${game.slug}`}
-            dateLabel={dateFormatter.format(game.data.date)}
-            engine={game.data.engine}
-            platforms={game.data.platforms}
-            status={game.data.status}
-            highlighted={game.data.highlighted}
-            supremapp={game.data.supremapp}
-          />
-        ))
+        coreGames.length > 0 && (
+          <section class="space-y-4">
+            <div class="grid gap-5 md:grid-cols-2">
+              {coreGames.map((game) => (
+                <GameCard
+                  title={game.data.title}
+                  description={game.data.description}
+                  image={game.data.cardImage}
+                  href={`/games/${game.slug}`}
+                  dateLabel={dateFormatter.format(game.data.date)}
+                  engine={game.data.engine}
+                  platforms={game.data.platforms}
+                  status={game.data.status}
+                  cardStyle={game.data.cardStyle}
+                  highlighted={game.data.highlighted}
+                  supremapp={game.data.supremapp}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        supremappGames.length > 0 && (
+          <section class="space-y-4">
+            <h2 class="text-2xl font-bold">SupremApp</h2>
+            <div class="grid gap-5 md:grid-cols-2">
+              {supremappGames.map((game) => (
+                <GameCard
+                  title={game.data.title}
+                  description={game.data.description}
+                  image={game.data.cardImage}
+                  href={`/games/${game.slug}`}
+                  dateLabel={dateFormatter.format(game.data.date)}
+                  engine={game.data.engine}
+                  platforms={game.data.platforms}
+                  status={game.data.status}
+                  cardStyle={game.data.cardStyle}
+                  highlighted={game.data.highlighted}
+                  supremapp={game.data.supremapp}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        studentGames.length > 0 && (
+          <section class="space-y-4">
+            <h2 class="text-2xl font-bold">Student</h2>
+            <div class="grid gap-5 md:grid-cols-2">
+              {studentGames.map((game) => (
+                <GameCard
+                  title={game.data.title}
+                  description={game.data.description}
+                  image={game.data.cardImage}
+                  href={`/games/${game.slug}`}
+                  dateLabel={dateFormatter.format(game.data.date)}
+                  engine={game.data.engine}
+                  platforms={game.data.platforms}
+                  status={game.data.status}
+                  cardStyle={game.data.cardStyle}
+                  highlighted={game.data.highlighted}
+                  supremapp={game.data.supremapp}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        otherGames.length > 0 && (
+          <section class="space-y-4">
+            <h2 class="text-2xl font-bold">Other</h2>
+            <div class="grid gap-5 md:grid-cols-2">
+              {otherGames.map((game) => (
+                <GameCard
+                  title={game.data.title}
+                  description={game.data.description}
+                  image={game.data.cardImage}
+                  href={`/games/${game.slug}`}
+                  dateLabel={dateFormatter.format(game.data.date)}
+                  engine={game.data.engine}
+                  platforms={game.data.platforms}
+                  status={game.data.status}
+                  cardStyle={game.data.cardStyle}
+                  highlighted={game.data.highlighted}
+                  supremapp={game.data.supremapp}
+                />
+              ))}
+            </div>
+          </section>
+        )
       }
     </div>
   </section>

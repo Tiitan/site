@@ -2,8 +2,8 @@
 title: Duoz
 description: 2D infinite runner controlling two characters side by side.
 cardImage: /images/games/duoz-placeholder.svg
-date: 2016-06-01
-status: released
+date: 2015-03-01
+status: unreleased
 platforms:
   - Android
   - iOS

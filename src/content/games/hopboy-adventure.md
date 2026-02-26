@@ -2,7 +2,7 @@
 title: Hopboy Adventure
 description: Multiplayer version of Hopboy with shared competitive sessions.
 cardImage: /images/games/hopboy-adventure-placeholder.svg
-date: 2017-03-01
+date: 2016-09-01
 status: unreleased
 platforms:
   - Android
