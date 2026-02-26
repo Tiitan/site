@@ -83,6 +83,20 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
           )
         }
       </div>
+      {
+        game.data.accessUrl && (
+          <div class="mt-6 flex justify-center">
+            <a
+              href={game.data.accessUrl}
+              class="button-primary inline-flex w-full max-w-md justify-center px-6 py-3 text-base sm:min-w-[22rem] sm:w-auto"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {game.data.accessLabel ?? "Access game"}
+            </a>
+          </div>
+        )
+      }
     </header>
 
     <div
@@ -103,4 +117,75 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
       <Content />
     </div>
   </article>
+
+  <script is:inline>
+    (() => {
+      const carousels = document.querySelectorAll("[data-carousel]");
+      if (!carousels.length) return;
+
+      const activeDotClasses = ["bg-cyan-600", "dark:bg-cyan-400"];
+      const inactiveDotClasses = ["bg-slate-300", "dark:bg-slate-600"];
+
+      carousels.forEach((carousel) => {
+        const track = carousel.querySelector("[data-carousel-track]");
+        const prevButton = carousel.querySelector("[data-carousel-prev]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+        const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+        if (!track || !dots.length) return;
+
+        const slides = Array.from(track.children);
+        if (!slides.length) return;
+
+        let currentIndex = 0;
+
+        const getSlideWidth = () => {
+          const firstSlide = slides[0];
+          if (!firstSlide) return 0;
+          return firstSlide.getBoundingClientRect().width;
+        };
+
+        const getStepSize = () => {
+          const slideWidth = getSlideWidth();
+          if (!slideWidth) return 1;
+          return Math.max(1, Math.round(track.clientWidth / slideWidth));
+        };
+
+        const setActiveDot = (index) => {
+          dots.forEach((dot, dotIndex) => {
+            const isActive = dotIndex === index;
+            dot.classList.toggle(activeDotClasses[0], isActive);
+            dot.classList.toggle(activeDotClasses[1], isActive);
+            dot.classList.toggle(inactiveDotClasses[0], !isActive);
+            dot.classList.toggle(inactiveDotClasses[1], !isActive);
+            dot.setAttribute("aria-current", isActive ? "true" : "false");
+          });
+        };
+
+        const scrollToIndex = (index) => {
+          const slideWidth = getSlideWidth();
+          if (!slideWidth) return;
+          currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+          track.scrollTo({ left: slideWidth * currentIndex, behavior: "smooth" });
+          setActiveDot(currentIndex);
+        };
+
+        const syncFromScroll = () => {
+          const slideWidth = getSlideWidth();
+          if (!slideWidth) return;
+          const nextIndex = Math.round(track.scrollLeft / slideWidth);
+          if (nextIndex === currentIndex) return;
+          currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
+          setActiveDot(currentIndex);
+        };
+
+        prevButton?.addEventListener("click", () => scrollToIndex(currentIndex - getStepSize()));
+        nextButton?.addEventListener("click", () => scrollToIndex(currentIndex + getStepSize()));
+        dots.forEach((dot, index) => dot.addEventListener("click", () => scrollToIndex(index)));
+        track.addEventListener("scroll", syncFromScroll, { passive: true });
+        window.addEventListener("resize", () => scrollToIndex(currentIndex));
+
+        setActiveDot(currentIndex);
+      });
+    })();
+  </script>
 </BaseLayout>

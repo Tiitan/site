@@ -27,6 +27,8 @@ const games = defineCollection({
     engine: z.string(),
     genre: z.string(),
     releaseNote: z.string().optional(),
+    accessUrl: z.string().url().optional(),
+    accessLabel: z.string().optional(),
     highlighted: z.boolean().default(false),
     supremapp: z.boolean().default(false)
   })
