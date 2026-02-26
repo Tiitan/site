@@ -29,3 +29,4 @@ npm run preview
 - Site URL is configured as `https://titan.nofl.uk`.
 - Dark mode is class-based and persisted in `localStorage`.
 - No tracking or analytics are enabled by default.
+- Game placeholder generation workflow is documented in `docs/game-placeholders.md`.
