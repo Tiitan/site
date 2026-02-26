@@ -22,6 +22,8 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
 ---
 
 <BaseLayout title={`${game.data.title} | Games | Titan`} description={game.data.description} image={game.data.cardImage}>
+  <a class="button-secondary mb-6 inline-flex" href="/games">Back to Games</a>
+
   <article class="space-y-8">
     <header class="surface">
       <div class="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-start">
@@ -77,7 +79,8 @@ const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
         "[&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5",
         "[&_li]:text-slate-700 dark:[&_li]:text-slate-300",
         "[&_a]:text-cyan-700 [&_a]:underline-offset-4 hover:[&_a]:underline dark:[&_a]:text-cyan-300",
-        "[&_img]:w-full [&_img]:rounded-xl [&_img]:border [&_img]:border-slate-200 dark:[&_img]:border-slate-700"
+        "[&_img]:w-full [&_img]:rounded-xl [&_img]:border [&_img]:border-slate-200 dark:[&_img]:border-slate-700",
+        "[&_iframe]:aspect-video [&_iframe]:w-full [&_iframe]:rounded-xl [&_iframe]:border [&_iframe]:border-slate-200 dark:[&_iframe]:border-slate-700"
       ]}
     >
       <Content />
