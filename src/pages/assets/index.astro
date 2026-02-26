@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const assets = (await getCollection("assets")).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const upcoming = assets.filter((asset) => asset.data.status !== "shipped");
+---
+
+<BaseLayout
+  title="Assets | Titan"
+  description="Assets released on the stores."
+>
+  <section>
+    <h1 class="text-3xl font-extrabold sm:text-4xl">Assets</h1>
+    <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">
+      Assets released on the stores.
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        assets.map((asset) => (
+          <ProjectCard
+            title={asset.data.title}
+            description={asset.data.description}
+            image={asset.data.cardImage}
+            tags={asset.data.tags}
+            href={`/assets/${asset.slug}`}
+            status={asset.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="surface mt-12">
+    <h2 class="text-2xl font-bold">In progress / upcoming</h2>
+    <ul class="mt-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+      <li>Window Fracture (Unreal)</li>
+      {
+        upcoming.map((asset) => (
+          <li>
+            {asset.data.title} - {asset.data.status === "in-progress" ? "in progress" : "planned"}.
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

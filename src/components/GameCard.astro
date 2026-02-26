@@ -1,0 +1,76 @@
+---
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  dateLabel: string;
+  engine: string;
+  platforms: string[];
+  status: "released" | "unreleased";
+  highlighted?: boolean;
+}
+
+const {
+  title,
+  description,
+  href,
+  image,
+  dateLabel,
+  engine,
+  platforms,
+  status,
+  highlighted = false
+} = Astro.props;
+
+const statusLabel = status === "released" ? "Released" : "Unreleased";
+const statusClass =
+  status === "released"
+    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200"
+    : "bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-200";
+---
+
+<a
+  href={href}
+  class:list={[
+    "surface group block h-full transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md dark:hover:border-cyan-700",
+    highlighted &&
+      "border-cyan-400/80 shadow-[0_0_0_1px_rgba(34,211,238,0.5),0_0_34px_rgba(34,211,238,0.35)] dark:border-cyan-600/80 dark:shadow-[0_0_0_1px_rgba(34,211,238,0.45),0_0_40px_rgba(34,211,238,0.28)]"
+  ]}
+>
+  <article class="flex h-full flex-col gap-4">
+    <img
+      src={image}
+      alt={`${title} placeholder image`}
+      class="h-44 w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+      loading="lazy"
+    />
+
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">
+        {title}
+        {
+          highlighted && (
+            <span class="ml-2 align-middle text-xl leading-none text-amber-500 dark:text-amber-400" aria-hidden="true">
+              ★
+            </span>
+          )
+        }
+      </h2>
+      <span class:list={["rounded-full px-2.5 py-1 text-xs font-semibold", statusClass]}>{statusLabel}</span>
+    </div>
+
+    <p class="text-sm text-slate-700 dark:text-slate-300">{description}</p>
+
+    <dl class="grid grid-cols-1 gap-1 text-xs text-slate-600 dark:text-slate-400">
+      <div><dt class="inline font-semibold">Release:</dt> <dd class="inline">{dateLabel}</dd></div>
+      <div><dt class="inline font-semibold">Engine:</dt> <dd class="inline">{engine}</dd></div>
+    </dl>
+
+    <div class="mt-auto flex flex-wrap gap-2">
+      {platforms.map((platform) => <Tag label={platform} />)}
+    </div>
+  </article>
+</a>

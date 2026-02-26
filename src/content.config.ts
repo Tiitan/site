@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const projects = defineCollection({
+const assets = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -15,4 +15,20 @@ const projects = defineCollection({
   })
 });
 
-export const collections = { projects };
+const games = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    cardImage: z.string(),
+    date: z.coerce.date(),
+    status: z.enum(["released", "unreleased"]),
+    platforms: z.array(z.string()).min(1),
+    engine: z.string(),
+    genre: z.string(),
+    releaseNote: z.string().optional(),
+    highlighted: z.boolean().default(false)
+  })
+});
+
+export const collections = { assets, games };

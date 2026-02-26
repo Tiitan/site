@@ -3,9 +3,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
-const projects = await getCollection("projects");
-const featured = projects
-  .filter((project) => project.data.featured)
+const assets = await getCollection("assets");
+const featured = assets
+  .filter((asset) => asset.data.featured)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
@@ -22,7 +22,7 @@ const featured = projects
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
-        <a class="button-primary" href="/projects">View Assets</a>
+        <a class="button-primary" href="/assets">View Assets</a>
         <a class="button-secondary" href="/contact">Contact</a>
       </div>
     </div>
@@ -40,20 +40,20 @@ const featured = projects
   <section class="mt-12">
     <div class="mb-6 flex items-center justify-between gap-4">
       <h2 class="text-2xl font-bold">Featured Assets</h2>
-      <a class="text-sm font-semibold text-cyan-700 hover:underline dark:text-cyan-300" href="/projects">
+      <a class="text-sm font-semibold text-cyan-700 hover:underline dark:text-cyan-300" href="/assets">
         See all assets
       </a>
     </div>
     <div class="grid gap-5 md:grid-cols-2">
       {
-        featured.map((project) => (
+        featured.map((asset) => (
           <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            image={project.data.cardImage}
-            tags={project.data.tags}
-            href={`/projects/${project.slug}`}
-            status={project.data.status}
+            title={asset.data.title}
+            description={asset.data.description}
+            image={asset.data.cardImage}
+            tags={asset.data.tags}
+            href={`/assets/${asset.slug}`}
+            status={asset.data.status}
           />
         ))
       }

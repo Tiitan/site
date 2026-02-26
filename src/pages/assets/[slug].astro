@@ -4,32 +4,33 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Tag from "../../components/Tag.astro";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: { project }
+  const assets = await getCollection("assets");
+  return assets.map((asset) => ({
+    params: { slug: asset.slug },
+    props: { asset }
   }));
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
-const storeUrl = project.data.storeUrl;
-const storeLabel = project.data.storeLabel || "View in store";
+const { asset } = Astro.props;
+const { Content } = await render(asset);
+const storeUrl = asset.data.storeUrl;
+const storeLabel = asset.data.storeLabel || "View in store";
 ---
 
 <BaseLayout
-  title={`${project.data.title} | Assets | Titan`}
-  description={project.data.description} >
+  title={`${asset.data.title} | Assets | Titan`}
+  description={asset.data.description}
+>
   <article class="space-y-8">
     <header class="surface">
       <div class="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-start">
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Project detail</p>
-          <h1 class="text-3xl font-extrabold sm:text-4xl">{project.data.title}</h1>
-          <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">{project.data.description}</p>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Asset detail</p>
+          <h1 class="text-3xl font-extrabold sm:text-4xl">{asset.data.title}</h1>
+          <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">{asset.data.description}</p>
 
           <div class="mt-6 flex flex-wrap gap-2">
-            {project.data.tags.map((tag: string) => <Tag label={tag} />)}
+            {asset.data.tags.map((tag: string) => <Tag label={tag} />)}
           </div>
 
           {
@@ -49,10 +50,10 @@ const storeLabel = project.data.storeLabel || "View in store";
         </div>
 
         {
-          project.data.cardImage && (
+          asset.data.cardImage && (
             <img
-              src={project.data.cardImage}
-              alt={`${project.data.title} card image`}
+              src={asset.data.cardImage}
+              alt={`${asset.data.title} card image`}
               class="w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
               loading="lazy"
             />

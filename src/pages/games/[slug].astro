@@ -1,0 +1,86 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const games = await getCollection("games");
+  return games.map((game) => ({
+    params: { slug: game.slug },
+    props: { game }
+  }));
+}
+
+const { game } = Astro.props;
+const { Content } = await render(game);
+
+const dateLabel = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric"
+}).format(game.data.date);
+
+const statusLabel = game.data.status === "released" ? "Released" : "Unreleased";
+---
+
+<BaseLayout title={`${game.data.title} | Games | Titan`} description={game.data.description} image={game.data.cardImage}>
+  <article class="space-y-8">
+    <header class="surface">
+      <div class="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-start">
+        <div>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Game detail</p>
+          <h1 class="text-3xl font-extrabold sm:text-4xl">{game.data.title}</h1>
+          <p class="mt-4 max-w-3xl text-slate-700 dark:text-slate-300">{game.data.description}</p>
+
+          <dl class="mt-6 grid gap-3 text-sm sm:grid-cols-2">
+            <div>
+              <dt class="font-semibold text-slate-900 dark:text-slate-100">Release</dt>
+              <dd class="text-slate-700 dark:text-slate-300">{dateLabel}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-slate-900 dark:text-slate-100">Status</dt>
+              <dd class="text-slate-700 dark:text-slate-300">{statusLabel}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-slate-900 dark:text-slate-100">Engine</dt>
+              <dd class="text-slate-700 dark:text-slate-300">{game.data.engine}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-slate-900 dark:text-slate-100">Platforms</dt>
+              <dd class="text-slate-700 dark:text-slate-300">{game.data.platforms.join(", ")}</dd>
+            </div>
+            {
+              game.data.releaseNote && (
+                <div class="sm:col-span-2">
+                  <dt class="font-semibold text-slate-900 dark:text-slate-100">Note</dt>
+                  <dd class="text-slate-700 dark:text-slate-300">{game.data.releaseNote}</dd>
+                </div>
+              )
+            }
+          </dl>
+        </div>
+
+        <img
+          src={game.data.cardImage}
+          alt={`${game.data.title} placeholder image`}
+          class="w-full rounded-xl border border-slate-200 object-cover dark:border-slate-700"
+          loading="lazy"
+        />
+      </div>
+    </header>
+
+    <div
+      class:list={[
+        "surface",
+        "space-y-6",
+        "[&_h2]:text-2xl [&_h2]:font-bold",
+        "[&_h3]:text-xl [&_h3]:font-semibold",
+        "[&_p]:leading-7 [&_p]:text-slate-700 dark:[&_p]:text-slate-300",
+        "[&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5",
+        "[&_li]:text-slate-700 dark:[&_li]:text-slate-300",
+        "[&_a]:text-cyan-700 [&_a]:underline-offset-4 hover:[&_a]:underline dark:[&_a]:text-cyan-300",
+        "[&_img]:w-full [&_img]:rounded-xl [&_img]:border [&_img]:border-slate-200 dark:[&_img]:border-slate-700"
+      ]}
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
