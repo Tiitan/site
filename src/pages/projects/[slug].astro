@@ -13,16 +13,13 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const hasUnreal = project.data.engines.unreal.trim().length > 0;
-const hasAssetStore = Boolean(project.data.links.assetStore);
-const isWindowFracture = project.slug === "window-fracture";
+const storeUrl = project.data.storeUrl;
+const storeLabel = project.data.storeLabel || "View in store";
 ---
 
 <BaseLayout
-  title={`${project.data.title} | Projects | Titan`}
-  description={project.data.description}
-  image="/images/window-fracture-cover.png"
->
+  title={`${project.data.title} | Assets | Titan`}
+  description={project.data.description} >
   <article class="space-y-8">
     <header class="surface">
       <div class="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-start">
@@ -35,24 +32,20 @@ const isWindowFracture = project.slug === "window-fracture";
             {project.data.tags.map((tag: string) => <Tag label={tag} />)}
           </div>
 
-          <dl class="mt-6 grid gap-4 text-sm sm:grid-cols-3">
-            <div>
-              <dt class="font-semibold text-slate-900 dark:text-slate-100">Status</dt>
-              <dd class="text-slate-700 dark:text-slate-300">{project.data.status}</dd>
-            </div>
-            <div>
-              <dt class="font-semibold text-slate-900 dark:text-slate-100">Unity</dt>
-              <dd class="text-slate-700 dark:text-slate-300">{project.data.engines.unity}</dd>
-            </div>
-            {
-              hasUnreal && (
-                <div>
-                  <dt class="font-semibold text-slate-900 dark:text-slate-100">Unreal</dt>
-                  <dd class="text-slate-700 dark:text-slate-300">{project.data.engines.unreal}</dd>
-                </div>
-              )
-            }
-          </dl>
+          {
+            storeUrl && (
+              <div class="mt-8 flex justify-center">
+                <a
+                  href={storeUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="inline-flex w-full max-w-md items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 text-lg font-semibold text-white shadow-sm transition hover:bg-cyan-500 sm:w-auto sm:min-w-[320px]"
+                >
+                  {storeLabel}
+                </a>
+              </div>
+            )
+          }
         </div>
 
         {
@@ -87,34 +80,5 @@ const isWindowFracture = project.slug === "window-fracture";
     >
       <Content />
     </div>
-
-    <section class="surface">
-      <h2 class="text-2xl font-bold">Project links</h2>
-      <ul class="mt-4 space-y-2 text-sm">
-        <li>
-          <a href={project.data.links.github} target="_blank" rel="noreferrer noopener">GitHub repository</a>
-          {
-            isWindowFracture && (
-              <span class="text-slate-700 dark:text-slate-300">
-                {" "}
-                - Unity license required for commercial use and support.
-              </span>
-            )
-          }
-        </li>
-        <li>
-          <a href={project.data.links.docs} target="_blank" rel="noreferrer noopener">Documentation</a>
-        </li>
-        {
-          hasAssetStore && (
-            <li>
-              <a href={project.data.links.assetStore} target="_blank" rel="noreferrer noopener">
-                Unity Asset Store (placeholder)
-              </a>
-            </li>
-          )
-        }
-      </ul>
-    </section>
   </article>
 </BaseLayout>

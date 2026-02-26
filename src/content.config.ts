@@ -10,15 +10,8 @@ const projects = defineCollection({
     date: z.coerce.date(),
     featured: z.boolean().default(false),
     status: z.enum(["shipped", "in-progress", "planned"]),
-    engines: z.object({
-      unity: z.string(),
-      unreal: z.string()
-    }),
-    links: z.object({
-      github: z.string().url(),
-      docs: z.string().url(),
-      assetStore: z.string().url().optional()
-    })
+    storeUrl: z.string().url().optional(),
+    storeLabel: z.string().optional()
   })
 });
 

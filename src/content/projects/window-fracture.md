@@ -11,13 +11,8 @@ tags:
 date: 2023-04-03
 featured: true
 status: shipped
-engines:
-  unity: Available now
-  unreal: ""
-links:
-  github: https://github.com/Tiitan/WindowFracture
-  docs: https://github.com/Tiitan/WindowFracture#readme
-  assetStore: https://assetstore.unity.com/packages/slug/tools/window-fracture-placeholder-000000
+storeUrl: https://assetstore.unity.com/packages/slug/tools/window-fracture-placeholder-000000
+storeLabel: View in Unity Asset store
 ---
 
 ## Overview
@@ -31,16 +26,7 @@ Window Fracture is a runtime package for realistic, pattern-driven shattering fo
 - Recursive shattering support: spawned shards can fracture again.
 - Connectivity-aware shard fall behavior, including anchored frame-touching pieces.
 
-## Technical Notes
-
-- Supports convex-like flat panel geometry with arbitrary thickness and non-uniform XY scale.
-- UV0 is propagated from the source panel to generated shards for material consistency.
-- Runtime generation is designed to be lightweight versus full 3D volume fracture workflows.
-- Current implementation target is Unity 6000.3+.
-
 ## Media
-
-![Window Fracture cover image](/images/window-fracture-cover.png)
 
 <iframe
   src="https://www.youtube-nocookie.com/embed/d-GVbH1iRUU"
@@ -51,13 +37,16 @@ Window Fracture is a runtime package for realistic, pattern-driven shattering fo
   allowfullscreen>
 </iframe>
 
-![Shard extraction debug view](/images/window-fracture-shards.png)
+## Technical Notes
+
+- Supports convex-like flat panel geometry with arbitrary thickness and non-uniform XY scale.
+- UV0 is propagated from the source panel to generated shards for material consistency.
+- Runtime generation is designed to be lightweight versus full 3D volume fracture workflows.
+- Current implementation target is Unity 6000.3+.
 
 ## Links
 
 - [GitHub repository](https://github.com/Tiitan/WindowFracture) - Unity license required for commercial use and support.
-- [README and docs](https://github.com/Tiitan/WindowFracture#readme)
-- [Unity Asset Store](https://assetstore.unity.com/packages/slug/tools/window-fracture-placeholder-000000)
 
 ## Changelog
 
